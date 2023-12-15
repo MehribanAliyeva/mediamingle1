@@ -1,0 +1,44 @@
+spring:
+  servlet:
+    multipart:
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:postgresql://db:5432/test
+    username: postgres
+    password: bilobileto11
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: lvmehriban@gmail.com
+    password: qlgayhafotakvojj
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+aws:
+  access:
+    key:
+      id: AKIAV7SDUPGWQUD6TK74
+    secret:
+      key: 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
+  s3:
+    region: us-east-1
+    bucket:
+      name: azmeloman1
+
+
