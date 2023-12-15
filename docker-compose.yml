@@ -2,21 +2,22 @@ version: '3.8'
 
 services:
   db:
-    container_name: postgres_container
+    container_name: postgres
     image: postgres
     restart: always
     volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
       - db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: bilobileto11
-      POSTGRES_DB: test
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mediamingle
     ports:
       - "5432:5432"
     networks:
-      - musicapp
+      - mediamingle
   pgadmin:
-    container_name: pgadmin4_container
+    container_name: pgadmin4
     image: dpage/pgadmin4
     restart: always
     volumes:
@@ -27,27 +28,26 @@ services:
     ports:
       - "5050:80"
     networks:
-      - musicapp
+      - mediamingle
 
   musicapp-service:
-    container_name: music-app
+    container_name: mediamingle
     build:
       context: ./
-    image: musicapp-demo
+    image: mediamingle
     depends_on:
       - db
-#      - mongodb
     ports:
-      - "8081:8080"
+      - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL:  jdbc:postgresql://db:5432/test
+      SPRING_DATASOURCE_URL:  jdbc:postgresql://db:5432/mediamingle
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: bilobileto11
+      SPRING_DATASOURCE_PASSWORD: password
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     volumes:
       - './:/src'
     networks:
-      - musicapp
+      - mediamingle
 
 volumes:
   db:
@@ -55,5 +55,4 @@ volumes:
   pgadmin_data:
 
 networks:
-  musicapp:
-    external: true
+  mediamingle:

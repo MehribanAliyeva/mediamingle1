@@ -1,8 +1,8 @@
-package az.musicapp.musicappdemo.model.mapper;
+package az.ada.mediamingle.mapper;
 
 
-import az.musicapp.musicappdemo.model.dto.UserDto;
-import az.musicapp.musicappdemo.model.entity.User;
+import az.ada.mediamingle.model.dto.UserDto;
+import az.ada.mediamingle.model.entity.User;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 

@@ -1,12 +1,12 @@
-package az.musicapp.musicappdemo.repo;
+package az.ada.mediamingle.repo;
 
-import az.musicapp.musicappdemo.model.entity.VerificationCode;
+import az.ada.mediamingle.model.entity.VerificationCode;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface VerificationCodeRepository extends JpaRepository<VerificationCode,Long> {
+public interface VerificationCodeRepository extends JpaRepository<VerificationCode,Integer> {
     public Optional<VerificationCode> findByCode(String code);
 }
