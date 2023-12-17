@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,7 +30,7 @@ public class ForumServiceImpl implements ForumService {
       }else{
           throw new IllegalStateException(String.format("User with id %d does not exist", createdById));
       }
-      return forumDto;
+      return forumMapper.forumToForumDto(forum);
     }
     public ForumDto editForum(Integer forumId, ForumDto forumDto){
         Optional<Forum> existingForum = forumRepository.findById(forumId);
@@ -39,11 +40,18 @@ public class ForumServiceImpl implements ForumService {
         }else{
             throw new IllegalStateException(String.format("Forum with id %d does not exist", forumId));
         }
-        return forumDto;
+        return forumMapper.forumToForumDto(existingForum.get());
     }
 
     @Override
     public void deleteForum(Integer forumId) {
         forumRepository.deleteById(forumId);
+    }
+
+    @Override
+    public List<ForumDto> getAllForums() {
+        System.out.println(forumRepository.findAll());
+        System.out.println(forumMapper.forumsToForumDtos(forumRepository.findAll()));
+        return forumMapper.forumsToForumDtos(forumRepository.findAll());
     }
 }

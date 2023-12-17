@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface VerificationCodeRepository extends JpaRepository<VerificationCode,Integer> {
+public interface VerificationCodeRepository extends JpaRepository<VerificationCode,Long> {
     public Optional<VerificationCode> findByCode(String code);
 }

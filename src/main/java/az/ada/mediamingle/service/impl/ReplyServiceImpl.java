@@ -23,8 +23,7 @@ public class ReplyServiceImpl implements ReplyService {
     private final ForumRepository forumRepository;
     private final ReplyRepository replyRepository;
     private final ReplyMapper replyMapper;
-    private final ForumMapper forumMapper;
-    private final UserMapper userMapper;
+
     private final UserRepository userRepository;
 
     @Override
@@ -40,7 +39,7 @@ public class ReplyServiceImpl implements ReplyService {
         }else{
             throw new IllegalStateException("Issue creating a reply");
         }
-        return replyDto;
+        return replyMapper.replyToReplyDto(reply);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class ReplyServiceImpl implements ReplyService {
         }else{
             throw new IllegalStateException(String.format("Reply with id %d does not exist", replyId));
         }
-        return replyDto;
+        return replyMapper.replyToReplyDto(existingReply.get());
     }
 
     @Override

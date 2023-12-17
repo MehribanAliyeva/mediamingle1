@@ -4,7 +4,7 @@ INSERT INTO app_users (id, username, email, password) VALUES
                                                           (2, 'alice_smith', 'alice@example.com', 'securepass');
 
 -- Insert sample forums
-INSERT INTO forums (id, created_by_id, title, body) VALUES
+INSERT INTO forums (id, user_id, title, body) VALUES
                                                         (1, 1, 'Favorite Movie Quotes', 'Share your favorite quotes from movies.'),
                                                         (2, 2, 'Movie Recommendations', 'Recommend and discuss great movies.');
 

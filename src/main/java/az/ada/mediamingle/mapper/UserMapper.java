@@ -3,12 +3,31 @@ package az.ada.mediamingle.mapper;
 
 import az.ada.mediamingle.model.dto.UserDto;
 import az.ada.mediamingle.model.entity.User;
-import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
 @Component
-public interface UserMapper {
-    User userDtoToEntity(UserDto userDto);
-    UserDto userEntityToDto(User user);
+public class UserMapper  {
+    public User userDtoToEntity(UserDto userDto) {
+        if (userDto == null) {
+            return null;
+        }
+
+        User user = new User();
+        user.setId(userDto.getId());
+        user.setUsername(userDto.getUsername());
+
+        return user;
+    }
+
+    public UserDto userEntityToDto(User user) {
+        if (user == null) {
+            return null;
+        }
+
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setUsername(user.getUsername());
+        userDto.setEmail(user.getEmail());
+        return userDto;
+    }
 }

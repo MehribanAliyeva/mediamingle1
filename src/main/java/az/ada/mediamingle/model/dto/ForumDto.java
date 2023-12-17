@@ -12,7 +12,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 public class ForumDto {
+    private Integer id;
     private String title;
     private String body;
+    private UserDto createdBy;
     private List<ReplyDto> replies;
 }

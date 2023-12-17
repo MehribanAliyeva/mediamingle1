@@ -27,7 +27,7 @@ public class Reply {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "reply_id")
+    @JoinColumn(name = "user_id")
     private User createdBy;
     private String body;
     @ManyToOne

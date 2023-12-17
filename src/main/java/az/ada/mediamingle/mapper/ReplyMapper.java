@@ -2,16 +2,36 @@ package az.ada.mediamingle.mapper;
 
 import az.ada.mediamingle.model.dto.ReplyDto;
 import az.ada.mediamingle.model.entity.Reply;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper(componentModel = "spring")
-public interface ReplyMapper {
-    ReplyMapper INSTANCE = Mappers.getMapper(ReplyMapper.class);
+@Component
+public class ReplyMapper {
 
-    ReplyDto replyToReplyDto(Reply reply);
-    List<ReplyDto> repliesToReplyDtos(List<Reply> replies);
-    Reply replyDtoToReply(ReplyDto replyDto);
+    public ReplyDto replyToReplyDto(Reply reply) {
+        if (reply == null) {
+            return null;
+        }
+
+        ReplyDto replyDto = new ReplyDto();
+        replyDto.setBody(reply.getBody());
+        return replyDto;
+    }
+
+    public List<ReplyDto> repliesToReplyDtos(List<Reply> replies) {
+        return replies.stream()
+                .map(this::replyToReplyDto)
+                .collect(Collectors.toList());
+    }
+    public Reply replyDtoToReply(ReplyDto replyDto) {
+        if (replyDto == null) {
+            return null;
+        }
+
+        Reply reply = new Reply();
+        reply.setBody(replyDto.getBody());
+        return reply;
+    }
 }

@@ -10,5 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 public class ReplyDto {
+    private Integer id;
     private String body;
+    private UserDto createdBy;
+    private ForumDto forum;
 }
